@@ -1,0 +1,348 @@
+= geoc: A geospatial command line app
+Jared Erickson <jared.erickson@gmail.com>
+2017-02-26
+:revnumber: {project-version}
+:example-caption!:
+:customcss: style.css
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../../main]
+
+== Introduction
+
+* Command line app for geospatial data
+* https://github.com/jericks/geoc
+
+[source,bash]
+----
+geoc vector randompoints -n 10 -g "1,1,10,10" | geoc vector buffer -d 10
+----
+
+== Key Features
+
+=== Unix Philosophy
+
+* Read and Write Text
+** CSV for Vector
+** ASCII Grid for Rasters
+** WKT for Geometry and Projections
+* One Command Does one Things
+
+[source,bash]
+----
+cat states.csv | geoc vector envelope
+----
+
+[source,bash]
+----
+cat states.csv | geoc vector envelope | geoc vector buffer -d 1.2
+----
+
+=== Git Style Commands
+
+[source,bash]
+----
+geoc
+
+geoc list
+
+geoc vector buffer -i states.shp -o states_buf.shp -d 0.5
+
+geoc raster crop -i raster.tif -b "-120,-40,120,40"
+----
+
+=== Technology
+
+* JVM
+* GeoTools and JTS
+* GeoScript
+* Groovy
+* Args4J
+
+=== Extensible
+
+* Commands use Service Provider Interface (SPI)
+* Add commands by adding them to the classpath
+
+== Modules
+
+[cols="3"]
+|===
+|Vector
+|Raster
+|Tile
+
+|Map
+|Style
+|Geometry
+
+|Projection
+|Filter
+|
+|===
+
+== Data Source Strings
+
+key1=value key2='value with spaces'
+
+* Vector
+* Raster
+* Tile
+* Map 
+
+=== Vector Data Source Strings
+
+**PostGIS**
+
+dbtype=postgis database=postgres host=localhost port=5432 user=postgres passwd=postgres
+
+**GeoPackage**
+  
+database=layers.gpkg dbtype=geopkg
+
+layers.gpkg
+
+**Shapefile**
+  
+url=states.shp
+
+states.shp
+
+=== Raster Data Source Strings
+
+All rasters are currently file based.
+
+**GeoTIFF**
+
+source=srtm_12_03.tif
+
+**World**
+
+earth.png
+
+=== Tile Data Source Strings
+
+**MBTiles**
+
+type=mbtiles file=states.mbtiles
+
+states.mbtiles
+
+**GeoPackage**
+
+type=geopackage file=states.gpkg name=states pyramid=globalmercator
+
+states.gpkg
+
+**TMS**
+
+type=tms file=/Users/you/tms format=png name=tms pyramid=geodetic
+
+=== Map Data Source Strings
+
+* layertype = layer, raster, tile
+* layername = name of the layer
+* layerprojection = projection
+* style = sld or css
+* data source strings
+
+=== Map Data Source Strings
+
+**Vector**
+
+layertype=layer dbtype=geopkg database=/Users/user/Desktop/countries.gpkg layername=countries style=/Users/user/Desktop/countries.sld
+
+**Raster**
+
+layertype=raster source=rasters/earth.tif
+
+**Tile**
+
+layertype=tile file=world.mbtiles
+
+== Vector Examples
+
+=== Buffer
+
+[source,bash]
+.Buffer every feature in a layer
+----
+include::{sourcedir}/bash/vector_buffer.sh[indent=0]
+----
+
+=== Buffer
+
+image::vector_buffer.png[Buffer,700,500]
+
+=== Centroids
+
+[source,bash]
+.Calculate a centroid every feature in a layer
+----
+include::{sourcedir}/bash/vector_centroid.sh[indent=0]
+----
+
+=== Centroids
+
+image::vector_centroid.png[Centroid,700,500]
+
+=== Voronoi
+
+[source,bash]
+.Calculate a voronoi diagram around a layer
+----
+include::{sourcedir}/bash/vector_voronoi.sh[indent=0]
+----
+
+=== Voronoi
+
+image::vector_voronoi.png[Voronoi,700,500]
+
+== Raster Examples
+
+=== SRTM
+
+[source,bash]
+.Download SRTM data and get info
+----
+include::{sourcedir}/bash/raster_srtm_1.sh[indent=0]
+----
+
+=== Raster Info
+
+----
+include::{sourcedir}/bash/raster_info.txt[indent=0]
+----
+
+=== Crop and Create Contours
+
+[source,bash]
+.Crop raster and create contours
+----
+include::{sourcedir}/bash/raster_srtm_2.sh[indent=0]
+----
+
+=== SRTM Map
+
+image::raster_srtm.png[SRTM]
+
+=== Reclassify
+
+[source,bash]
+.Reclassify the Raster
+----
+include::{sourcedir}/bash/raster_reclassify.sh[indent=0]
+----
+
+=== Reclassify Map
+
+image::raster_reclassify.png[SRTM]
+
+=== Vectorize
+
+[source,bash]
+.Turn a Raster into a vector Layer
+----
+include::{sourcedir}/bash/raster_vectorize.sh[indent=0]
+----
+
+=== Vector Layer
+
+image::raster_vectorize.png[SRTM]
+
+== GeoPackage Tiles
+
+[source,bash]
+.Generate GeoPackage Geodetic Tiles
+----
+include::{sourcedir}/bash/tile_geopackage_1.sh[indent=0]
+----
+
+=== Geodetic Tiles
+
+image::world_geodetic_2.png[Geodetic, 800, 400]
+
+=== MBTiles
+
+[source,bash]
+.Generate MBTiles Mercator Tiles
+----
+include::{sourcedir}/bash/tile_mbtiles.sh[indent=0]
+----
+
+=== Mercator Tiles
+
+image::world_mercator_2.png[Mercator, 500, 500]
+
+== Other Examples
+
+=== Geometry Decimal Degrees
+
+[source,bash]
+.Read and Write Decimal Degrees
+----
+include::{sourcedir}/bash/geom_decimaldegrees.sh[indent=0]
+----
+
+=== Output
+
+----
+include::{sourcedir}/bash/geom_decimaldegrees.txt[indent=0]
+----
+
+=== Stitch together OSM Tiles
+
+[source,bash]
+----
+include::{sourcedir}/bash/map_osm.sh[indent=0]
+----
+
+image::map_osm.png[OSM, 500, 375]
+
+=== Create a Map Cube
+
+[source,bash]
+----
+include::{sourcedir}/bash/map_cube_watercolor.sh[indent=0]
+----
+
+image::map_cube_watercolor.png[MapCube, 500, 400]
+
+== Help
+
+=== command help
+
+[source,bash]
+----
+geoc tile generate --help
+----
+
+image::help.png[CommandHelp, 550]
+
+=== man pages
+
+man geo-vector-buffer
+
+image::manpage.png[ManPage, 550]
+
+=== web site
+
+http://jericks.github.io/geoc/index.html
+
+image::geoc_web.png[WebPage, 600]
+
+=== web docs
+
+[source,bash]
+----
+geoc geometry convert --web-help
+----
+
+image::geoc_geometry_convert.png[WebDocs, 600]
+
+=== bash completion
+
+video::bashcompletion.mov[width=640, start=60, end=140, options=autoplay]
+
+== Thank you!
+
+image::cugos.png[Cugos]
