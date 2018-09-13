@@ -112,7 +112,7 @@
                             <pubScmUrl>scm:git:git@github.com:jericks/geoc-pres.git</pubScmUrl>
                             <tryUpdate>false</tryUpdate>
                             <scmBranch>gh-pages</scmBranch>
-                            <content>${project.build.directory}/generated-docs</content>
+                            <content>${project.build.directory}/generated-slides</content>
                         </configuration>
                     </plugin>
                 </plugins>
