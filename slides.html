@@ -1,40 +1,44 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="author" content="Jared Erickson" /><title>geoc: A geospatial command line app</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js-3.1.0/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="reveal.js-3.1.0/css/theme/moon.css" id="theme" /><link href="reveal.js-3.1.0/lib/css/zenburn.css" rel="stylesheet" /><script>document.write( '<link rel="stylesheet" href="reveal.js-3.1.0/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><link rel="stylesheet" href="style.css" /></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>geoc</h1><h2>A geospatial command line app</h2><p class="author"><small>Jared Erickson</small></p></section><section id="_introduction"><h2>Introduction</h2><div class="ulist"><ul><li><p>Command line app for geospatial data</p></li><li><p><a href="https://github.com/jericks/geoc" class="bare">https://github.com/jericks/geoc</a></p></li></ul></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">geoc vector randompoints -n 10 -g "1,1,10,10" | geoc vector buffer -d 10</code></pre></div></div></section>
-<section><section id="_key_features"><h2>Key Features</h2></section><section id="_unix_philosophy"><h2>Unix Philosophy</h2><div class="ulist"><ul><li><p>Read and Write Text</p><div class="ulist"><ul><li><p>CSV for Vector</p></li><li><p>ASCII Grid for Rasters</p></li><li><p>WKT for Geometry and Projections</p></li></ul></div></li><li><p>One Command Does one Things</p></li></ul></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">cat states.csv | geoc vector envelope</code></pre></div></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">cat states.csv | geoc vector envelope | geoc vector buffer -d 1.2</code></pre></div></div></section><section id="_git_style_commands"><h2>Git Style Commands</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">geoc
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="author" content="Jared Erickson" /><title>geoc: A geospatial command line app</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js-3.1.0/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="reveal.js-3.1.0/css/theme/moon.css" id="theme" /><link href="reveal.js-3.1.0/lib/css/zenburn.css" rel="stylesheet" /><script>var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? "reveal.js-3.1.0/css/print/pdf.css" : "reveal.js-3.1.0/css/print/paper.css";
+document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="reveal.js-3.1.0/lib/js/html5shiv.js"></script><![endif]--><link rel="stylesheet" href="style.css" /></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>geoc</h1><h2>A geospatial command line app</h2><p class="author"><small>Jared Erickson</small></p></section><section id="introduction"><h2>Introduction</h2><div class="ulist"><ul><li><p>Command line app for geospatial data</p></li><li><p><a href="https://github.com/jericks/geoc" class="bare">https://github.com/jericks/geoc</a></p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">geoc vector randompoints -n 10 -g "1,1,10,10" | geoc vector buffer -d 10</code></pre></div></div></section>
+<section><section id="key_features"><h2>Key Features</h2></section><section id="unix_philosophy"><h2>Unix Philosophy</h2><div class="ulist"><ul><li><p>Read and Write Text</p><div class="ulist"><ul><li><p>CSV for Vector</p></li><li><p>ASCII Grid for Rasters</p></li><li><p>WKT for Geometry and Projections</p></li></ul></div></li><li><p>One Command Does one Things</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">cat states.csv | geoc vector envelope</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">cat states.csv | geoc vector envelope | geoc vector buffer -d 1.2</code></pre></div></div></section><section id="git_style_commands"><h2>Git Style Commands</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">geoc
 
 geoc list
 
 geoc vector buffer -i states.shp -o states_buf.shp -d 0.5
 
-geoc raster crop -i raster.tif -b "-120,-40,120,40"</code></pre></div></div></section><section id="_technology"><h2>Technology</h2><div class="ulist"><ul><li><p>JVM</p></li><li><p>GeoTools and JTS</p></li><li><p>GeoScript</p></li><li><p>Groovy</p></li><li><p>Args4J</p></li></ul></div></section><section id="_extensible"><h2>Extensible</h2><div class="ulist"><ul><li><p>Commands use Service Provider Interface (SPI)</p></li><li><p>Add commands by adding them to the classpath</p></li></ul></div></section></section>
-<section id="_modules"><h2>Modules</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%" /><col style="width:33.3333%" /><col style="width:33.3334%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Vector</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Raster</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Tile</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Style</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Geometry</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Projection</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Filter</p></td><td class="tableblock halign-left valign-top"></td></tr></tbody></table></section>
-<section><section id="_data_source_strings"><h2>Data Source Strings</h2><div class="paragraph"><p>key1=value key2='value with spaces'</p></div><div class="ulist"><ul><li><p>Vector</p></li><li><p>Raster</p></li><li><p>Tile</p></li><li><p>Map</p></li></ul></div></section><section id="_vector_data_source_strings"><h2>Vector Data Source Strings</h2><div class="paragraph"><p><strong>PostGIS</strong></p></div>
+geoc raster crop -i raster.tif -b "-120,-40,120,40"</code></pre></div></div></section><section id="technology"><h2>Technology</h2><div class="ulist"><ul><li><p>JVM</p></li><li><p>GeoTools and JTS</p></li><li><p>GeoScript</p></li><li><p>Groovy</p></li><li><p>Args4J</p></li></ul></div></section><section id="extensible"><h2>Extensible</h2><div class="ulist"><ul><li><p>Commands use Service Provider Interface (SPI)</p></li><li><p>Add commands by adding them to the classpath</p></li></ul></div></section></section>
+<section id="modules"><h2>Modules</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%" /><col style="width:33.3333%" /><col style="width:33.3334%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Vector</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Raster</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Tile</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Style</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Geometry</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Projection</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Filter</p></td><td class="tableblock halign-left valign-top"></td></tr></table></section>
+<section><section id="data_source_strings"><h2>Data Source Strings</h2><div class="paragraph"><p>key1=value key2='value with spaces'</p></div><div class="ulist"><ul><li><p>Vector</p></li><li><p>Raster</p></li><li><p>Tile</p></li><li><p>Map</p></li></ul></div></section><section id="vector_data_source_strings"><h2>Vector Data Source Strings</h2><div class="paragraph"><p><strong>PostGIS</strong></p></div>
 <div class="paragraph"><p>dbtype=postgis database=postgres host=localhost port=5432 user=postgres passwd=postgres</p></div>
 <div class="paragraph"><p><strong>GeoPackage</strong></p></div>
 <div class="paragraph"><p>database=layers.gpkg dbtype=geopkg</p></div>
 <div class="paragraph"><p>layers.gpkg</p></div>
 <div class="paragraph"><p><strong>Shapefile</strong></p></div>
 <div class="paragraph"><p>url=states.shp</p></div>
-<div class="paragraph"><p>states.shp</p></div></section><section id="_raster_data_source_strings"><h2>Raster Data Source Strings</h2><div class="paragraph"><p>All rasters are currently file based.</p></div>
+<div class="paragraph"><p>states.shp</p></div></section><section id="raster_data_source_strings"><h2>Raster Data Source Strings</h2><div class="paragraph"><p>All rasters are currently file based.</p></div>
 <div class="paragraph"><p><strong>GeoTIFF</strong></p></div>
 <div class="paragraph"><p>source=srtm_12_03.tif</p></div>
 <div class="paragraph"><p><strong>World</strong></p></div>
-<div class="paragraph"><p>earth.png</p></div></section><section id="_tile_data_source_strings"><h2>Tile Data Source Strings</h2><div class="paragraph"><p><strong>MBTiles</strong></p></div>
+<div class="paragraph"><p>earth.png</p></div></section><section id="tile_data_source_strings"><h2>Tile Data Source Strings</h2><div class="paragraph"><p><strong>MBTiles</strong></p></div>
 <div class="paragraph"><p>type=mbtiles file=states.mbtiles</p></div>
 <div class="paragraph"><p>states.mbtiles</p></div>
 <div class="paragraph"><p><strong>GeoPackage</strong></p></div>
 <div class="paragraph"><p>type=geopackage file=states.gpkg name=states pyramid=globalmercator</p></div>
 <div class="paragraph"><p>states.gpkg</p></div>
 <div class="paragraph"><p><strong>TMS</strong></p></div>
-<div class="paragraph"><p>type=tms file=/Users/you/tms format=png name=tms pyramid=geodetic</p></div></section><section id="_map_data_source_strings"><h2>Map Data Source Strings</h2><div class="ulist"><ul><li><p>layertype = layer, raster, tile</p></li><li><p>layername = name of the layer</p></li><li><p>layerprojection = projection</p></li><li><p>style = sld or css</p></li><li><p>data source strings</p></li></ul></div></section><section id="_map_data_source_strings_2"><h2>Map Data Source Strings</h2><div class="paragraph"><p><strong>Vector</strong></p></div>
+<div class="paragraph"><p>type=tms file=/Users/you/tms format=png name=tms pyramid=geodetic</p></div></section><section id="map_data_source_strings"><h2>Map Data Source Strings</h2><div class="ulist"><ul><li><p>layertype = layer, raster, tile</p></li><li><p>layername = name of the layer</p></li><li><p>layerprojection = projection</p></li><li><p>style = sld or css</p></li><li><p>data source strings</p></li></ul></div></section><section id="map_data_source_strings_2"><h2>Map Data Source Strings</h2><div class="paragraph"><p><strong>Vector</strong></p></div>
 <div class="paragraph"><p>layertype=layer dbtype=geopkg database=/Users/user/Desktop/countries.gpkg layername=countries style=/Users/user/Desktop/countries.sld</p></div>
 <div class="paragraph"><p><strong>Raster</strong></p></div>
 <div class="paragraph"><p>layertype=raster source=rasters/earth.tif</p></div>
 <div class="paragraph"><p><strong>Tile</strong></p></div>
 <div class="paragraph"><p>layertype=tile file=world.mbtiles</p></div></section></section>
-<section><section id="_vector_examples"><h2>Vector Examples</h2></section><section id="_buffer"><h2>Buffer</h2><div class="listingblock"><div class="title">Buffer every feature in a layer</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+<section><section id="vector_examples"><h2>Vector Examples</h2></section><section id="buffer"><h2>Buffer</h2><div class="listingblock"><div class="title">Buffer every feature in a layer</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc vector randompoints -g -180,-90,180,90 -n 100 &gt; points.csv
 
 cat points.csv | geoc vector buffer -d 10 &gt; polygons.csv
@@ -49,7 +53,7 @@ geoc map draw -f vector_buffer.png \
   -l "layertype=layer file=data.gpkg layername=ocean style=ocean.sld" \
   -l "layertype=layer file=data.gpkg layername=countries style=countries.sld" \
   -l "layertype=layer file=polygons.csv style=polygons.sld" \
-  -l "layertype=layer file=points.csv style=points.sld"</code></pre></div></div></section><section id="_buffer_2"><h2>Buffer</h2><div class="imageblock" style=""><img src="images/vector_buffer.png" alt="Buffer" width="700" height="500" /></div></section><section id="_centroids"><h2>Centroids</h2><div class="listingblock"><div class="title">Calculate a centroid every feature in a layer</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+  -l "layertype=layer file=points.csv style=points.sld"</code></pre></div></div></section><section id="buffer_2"><h2>Buffer</h2><div class="imageblock" style=""><img src="images/vector_buffer.png" alt="Buffer" width="700" height="500" /></div></section><section id="centroids"><h2>Centroids</h2><div class="listingblock"><div class="title">Calculate a centroid every feature in a layer</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc vector centroid -i naturalearth.gpkg -l countries \
   -o countries_centroids.shp
 
@@ -59,7 +63,7 @@ geoc vector defaultstyle --color navy -o 0.75 \
 geoc map draw -f vector_centroid.png \
   -l "layertype=layer file=data.gpkg layername=ocean style=ocean.sld" \
   -l "layertype=layer file=data.gpkg layername=countries style=countries.sld" \
-  -l "layertype=layer file=countries_centroids.shp style=countries_centroids.sld"</code></pre></div></div></section><section id="_centroids_2"><h2>Centroids</h2><div class="imageblock" style=""><img src="images/vector_centroid.png" alt="Centroid" width="700" height="500" /></div></section><section id="_voronoi"><h2>Voronoi</h2><div class="listingblock"><div class="title">Calculate a voronoi diagram around a layer</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+  -l "layertype=layer file=countries_centroids.shp style=countries_centroids.sld"</code></pre></div></div></section><section id="centroids_2"><h2>Centroids</h2><div class="imageblock" style=""><img src="images/vector_centroid.png" alt="Centroid" width="700" height="500" /></div></section><section id="voronoi"><h2>Voronoi</h2><div class="listingblock"><div class="title">Calculate a voronoi diagram around a layer</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc vector centroid -i naturalearth.gpkg -l countries \
   | geoc vector voronoi -o voronoi.shp
 
@@ -69,8 +73,8 @@ geoc vector defaultstyle --color navy -o 0.15 \
 geoc map draw -f vector_voronoi.png -b "-180,-90,180,90" \
   -l "layertype=layer file=naturalearth.gpkg layername=ocean style=ocean.sld" \
   -l "layertype=layer file=naturalearth.gpkg layername=countries style=countries.sld" \
-  -l "layertype=layer file=voronoi.shp layername=voronoi style=voronoi.sld"</code></pre></div></div></section><section id="_voronoi_2"><h2>Voronoi</h2><div class="imageblock" style=""><img src="images/vector_voronoi.png" alt="Voronoi" width="700" height="500" /></div></section></section>
-<section><section id="_raster_examples"><h2>Raster Examples</h2></section><section id="_srtm"><h2>SRTM</h2><div class="listingblock"><div class="title">Download SRTM data and get info</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/sh
+  -l "layertype=layer file=voronoi.shp layername=voronoi style=voronoi.sld"</code></pre></div></div></section><section id="voronoi_2"><h2>Voronoi</h2><div class="imageblock" style=""><img src="images/vector_voronoi.png" alt="Voronoi" width="700" height="500" /></div></section></section>
+<section><section id="raster_examples"><h2>Raster Examples</h2></section><section id="srtm"><h2>SRTM</h2><div class="listingblock"><div class="title">Download SRTM data and get info</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/sh
 
 # Download SRTM data for washington state
 curl -O http://srtm.csi.cgiar.org/SRT-ZIP/SRTM_V41/SRTM_Data_GeoTiff/srtm_12_03.zip
@@ -79,7 +83,7 @@ curl -O http://srtm.csi.cgiar.org/SRT-ZIP/SRTM_V41/SRTM_Data_GeoTiff/srtm_12_03.
 unzip srtm_12_03.zip
 
 # View info
-geoc raster info -i srtm_12_03.tif</code></pre></div></div></section><section id="_raster_info"><h2>Raster Info</h2><div class="listingblock"><div class="content"><pre class="highlight"><code>Format: GeoTIFF
+geoc raster info -i srtm_12_03.tif</code></pre></div></div></section><section id="raster_info"><h2>Raster Info</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="">Format: GeoTIFF
 Size: 6001, 6001
 Projection ID: EPSG:4326
 Projection WKT: GEOGCS["WGS 84",
@@ -96,7 +100,7 @@ Pixel Size: 8.333333333333332E-4, 8.333333333333332E-4
 Block Size: 6001, 1
 Bands:
    GRAY_INDEX
-      Min Value: -32768.0 Max Value: 4371.0</code></pre></div></div></section><section id="_crop_and_create_contours"><h2>Crop and Create Contours</h2><div class="listingblock"><div class="title">Crop raster and create contours</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/sh
+      Min Value: -32768.0 Max Value: 4371.0</code></pre></div></div></section><section id="crop_and_create_contours"><h2>Crop and Create Contours</h2><div class="listingblock"><div class="title">Crop raster and create contours</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/sh
 
 # Crop raster to Pierce County
 geoc raster crop -i srtm_12_03.tif \
@@ -115,7 +119,7 @@ geoc raster style colormap \
 
 geoc map draw -f pc.png \
     -l "layertype=raster source=pc.tif style=pc.sld" \
-    -l "layertype=layer file=contours.shp style=contours.sld"</code></pre></div></div></section><section id="_srtm_map"><h2>SRTM Map</h2><div class="imageblock" style=""><img src="images/raster_srtm.png" alt="SRTM" /></div></section><section id="_reclassify"><h2>Reclassify</h2><div class="listingblock"><div class="title">Reclassify the Raster</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/sh
+    -l "layertype=layer file=contours.shp style=contours.sld"</code></pre></div></div></section><section id="srtm_map"><h2>SRTM Map</h2><div class="imageblock" style=""><img src="images/raster_srtm.png" alt="SRTM" /></div></section><section id="reclassify"><h2>Reclassify</h2><div class="listingblock"><div class="title">Reclassify the Raster</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/sh
 
 geoc raster reclassify -i pc.tif -o pc_reclass.tif \
     -r 0-0=1 -r 0-50=2 -r 50-200=3 \
@@ -126,7 +130,7 @@ geoc raster style colormap \
     -v 4=#FF4500 -v 5=#800000 -v 6=#F5FFFA &gt; pc_reclass.sld
 
 geoc map draw -f pc_reclass.png -l \
-    "layertype=raster source=pc_reclass.tif style=pc_reclass.sld"</code></pre></div></div></section><section id="_reclassify_map"><h2>Reclassify Map</h2><div class="imageblock" style=""><img src="images/raster_reclassify.png" alt="SRTM" /></div></section><section id="_vectorize"><h2>Vectorize</h2><div class="listingblock"><div class="title">Turn a Raster into a vector Layer</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/sh
+    "layertype=raster source=pc_reclass.tif style=pc_reclass.sld"</code></pre></div></div></section><section id="reclassify_map"><h2>Reclassify Map</h2><div class="imageblock" style=""><img src="images/raster_reclassify.png" alt="SRTM" /></div></section><section id="vectorize"><h2>Vectorize</h2><div class="listingblock"><div class="title">Turn a Raster into a vector Layer</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/sh
 
 geoc raster polygon -e -i pc_reclass.tif -o pc_reclass_poly.shp
 
@@ -134,8 +138,8 @@ geoc vector uniquevaluesstyle -i pc_reclass_poly.shp -f value \
     -c BoldLandUse &gt; pc_reclass_poly.sld
 
 geoc map draw -f pc_reclass_poly.png \
-    -l "layertype=layer file=pc_reclass_poly.shp style=pc_reclass_poly.sld"</code></pre></div></div></section><section id="_vector_layer"><h2>Vector Layer</h2><div class="imageblock" style=""><img src="images/raster_vectorize.png" alt="SRTM" /></div></section></section>
-<section><section id="_geopackage_tiles"><h2>GeoPackage Tiles</h2><div class="listingblock"><div class="title">Generate GeoPackage Geodetic Tiles</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+    -l "layertype=layer file=pc_reclass_poly.shp style=pc_reclass_poly.sld"</code></pre></div></div></section><section id="vector_layer"><h2>Vector Layer</h2><div class="imageblock" style=""><img src="images/raster_vectorize.png" alt="SRTM" /></div></section></section>
+<section><section id="geopackage_tiles"><h2>GeoPackage Tiles</h2><div class="listingblock"><div class="title">Generate GeoPackage Geodetic Tiles</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc tile generate \
   -l "type=geopackage file=tiles.gpkg name=world_geodetic pyramid=geodetic" \
   -m "layertype=layer file=naturalearth.gpkg layername=ocean style=ocean.sld" \
@@ -150,7 +154,7 @@ geoc tile pyramid \
 
 geoc tile stitch raster \
   -l "type=geopackage file=tiles.gpkg name=world_geodetic" \
-  -o world_geodetic_2.png -z 2</code></pre></div></div></section><section id="_geodetic_tiles"><h2>Geodetic Tiles</h2><div class="imageblock" style=""><img src="images/world_geodetic_2.png" alt="Geodetic" width="800" height="400" /></div></section><section id="_mbtiles"><h2>MBTiles</h2><div class="listingblock"><div class="title">Generate MBTiles Mercator Tiles</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+  -o world_geodetic_2.png -z 2</code></pre></div></div></section><section id="geodetic_tiles"><h2>Geodetic Tiles</h2><div class="imageblock" style=""><img src="images/world_geodetic_2.png" alt="Geodetic" width="800" height="400" /></div></section><section id="mbtiles"><h2>MBTiles</h2><div class="listingblock"><div class="title">Generate MBTiles Mercator Tiles</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc tile generate \
   -l tiles.mbtiles \
   -m "layertype=layer file=naturalearth.gpkg layername=ocean style=ocean.sld" \
@@ -165,8 +169,8 @@ geoc tile pyramid \
 
 geoc tile stitch raster \
   -l tiles.mbtiles \
-  -o world_mercator_2.png -z 2</code></pre></div></div></section><section id="_mercator_tiles"><h2>Mercator Tiles</h2><div class="imageblock" style=""><img src="images/world_mercator_2.png" alt="Mercator" width="500" height="500" /></div></section></section>
-<section><section id="_other_examples"><h2>Other Examples</h2></section><section id="_geometry_decimal_degrees"><h2>Geometry Decimal Degrees</h2><div class="listingblock"><div class="title">Read and Write Decimal Degrees</div><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+  -o world_mercator_2.png -z 2</code></pre></div></div></section><section id="mercator_tiles"><h2>Mercator Tiles</h2><div class="imageblock" style=""><img src="images/world_mercator_2.png" alt="Mercator" width="500" height="500" /></div></section></section>
+<section><section id="other_examples"><h2>Other Examples</h2></section><section id="geometry_decimal_degrees"><h2>Geometry Decimal Degrees</h2><div class="listingblock"><div class="title">Read and Write Decimal Degrees</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 
 echo "Decimal Degrees to XY:"
 geoc geometry dd2pt -d "122d 19m 59.0016s W, 47d 36m 34.9992s N" -t xy
@@ -187,7 +191,7 @@ echo "Point to DDM:"
 geoc geometry pt2dd -p "POINT (-122.5256194 47.212022222)" -t ddm
 
 echo "Point to DDM with characters:"
-geoc geometry pt2dd -p "POINT (-122.5256194 47.212022222)" -t ddm_char</code></pre></div></div></section><section id="_output"><h2>Output</h2><div class="listingblock"><div class="content"><pre class="highlight"><code>Decimal Degrees to XY:
+geoc geometry pt2dd -p "POINT (-122.5256194 47.212022222)" -t ddm_char</code></pre></div></div></section><section id="output"><h2>Output</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="">Decimal Degrees to XY:
 -122.333056, 47.609722
 Decimal Degrees to WKT:
 POINT (-122.333056 47.609722)
@@ -200,25 +204,27 @@ Point to DMS with characters:
 Point to DDM:
 -122° 31.5372' W, 47° 12.7213' N
 Point to DDM with characters:
--122d 31.5372m W, 47d 12.7213m N</code></pre></div></div></section><section id="_stitch_together_osm_tiles"><h2>Stitch together OSM Tiles</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+-122d 31.5372m W, 47d 12.7213m N</code></pre></div></div></section><section id="stitch_together_osm_tiles"><h2>Stitch together OSM Tiles</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc map draw -f map_osm.png \
   -l "layertype=tile type=osm" \
   -b "18.748169,35.643905,26.658325,38.908133,EPSG:4326"</code></pre></div></div>
-<div class="imageblock" style=""><img src="images/map_osm.png" alt="OSM" width="500" height="375" /></div></section><section id="_create_a_map_cube"><h2>Create a Map Cube</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">#!/bin/bash
+<div class="imageblock" style=""><img src="images/map_osm.png" alt="OSM" width="500" height="375" /></div></section><section id="create_a_map_cube"><h2>Create a Map Cube</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc map cube -f map_cube_watercolor.png \
   -l "layertype=tile type=osm name=stamen-watercolor"</code></pre></div></div>
 <div class="imageblock" style=""><img src="images/map_cube_watercolor.png" alt="MapCube" width="500" height="400" /></div></section></section>
-<section><section id="_help"><h2>Help</h2></section><section id="_command_help"><h2>command help</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">geoc tile generate --help</code></pre></div></div>
-<div class="imageblock" style=""><img src="images/help.png" alt="CommandHelp" width="550" /></div></section><section id="_man_pages"><h2>man pages</h2><div class="paragraph"><p>man geo-vector-buffer</p></div>
-<div class="imageblock" style=""><img src="images/manpage.png" alt="ManPage" width="550" /></div></section><section id="_web_site"><h2>web site</h2><div class="paragraph"><p><a href="http://jericks.github.io/geoc/index.html" class="bare">http://jericks.github.io/geoc/index.html</a></p></div>
-<div class="imageblock" style=""><img src="images/geoc_web.png" alt="WebPage" width="600" /></div></section><section id="_web_docs"><h2>web docs</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="bash language-bash">geoc geometry convert --web-help</code></pre></div></div>
-<div class="imageblock" style=""><img src="images/geoc_geometry_convert.png" alt="WebDocs" width="600" /></div></section><section id="_bash_completion"><h2>bash completion</h2><div class="videoblock"><video src="images/bashcompletion.mov" width="640" height="100%" data-autoplay="" controls="">Your browser does not support the video tag.</video></div></section></section>
-<section id="_thank_you"><h2>Thank you!</h2><div class="imageblock" style=""><img src="images/cugos.png" alt="Cugos" /></div></section></div></div><script src="reveal.js-3.1.0/lib/js/head.min.js"></script><script src="reveal.js-3.1.0/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+<section><section id="help"><h2>Help</h2></section><section id="command_help"><h2>command help</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">geoc tile generate --help</code></pre></div></div>
+<div class="imageblock" style=""><img src="images/help.png" alt="CommandHelp" width="550" /></div></section><section id="man_pages"><h2>man pages</h2><div class="paragraph"><p>man geo-vector-buffer</p></div>
+<div class="imageblock" style=""><img src="images/manpage.png" alt="ManPage" width="550" /></div></section><section id="web_site"><h2>web site</h2><div class="paragraph"><p><a href="http://jericks.github.io/geoc/index.html" class="bare">http://jericks.github.io/geoc/index.html</a></p></div>
+<div class="imageblock" style=""><img src="images/geoc_web.png" alt="WebPage" width="600" /></div></section><section id="web_docs"><h2>web docs</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">geoc geometry convert --web-help</code></pre></div></div>
+<div class="imageblock" style=""><img src="images/geoc_geometry_convert.png" alt="WebDocs" width="600" /></div></section><section id="bash_completion"><h2>bash completion</h2><div class="videoblock"><video src="images/bashcompletion.mov" width="640" height="100%" data-autoplay="" controls="">Your browser does not support the video tag.</video></div></section></section>
+<section id="thank_you"><h2>Thank you!</h2><div class="imageblock" style=""><img src="images/cugos.png" alt="Cugos" /></div></section></div></div><script src="reveal.js-3.1.0/lib/js/head.min.js"></script><script src="reveal.js-3.1.0/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
   // Display a presentation progress bar
   progress: true,
+  // Set a per-slide timing for speaker notes, null means none
+  defaultTiming: null,
   // Display the page number of the current slide
   slideNumber: false,
   // Push each slide change to the browser history
@@ -235,11 +241,23 @@ Reveal.initialize({
   loop: false,
   // Change the presentation direction to be RTL
   rtl: false,
+  // Randomizes the order of slides each time the presentation loads
+  shuffle: false,
   // Turns fragments on and off globally
   fragments: true,
   // Flags if the presentation is running in an embedded mode,
   // i.e. contained within a limited portion of the screen
   embedded: false,
+  // Flags if we should show a help overlay when the questionmark
+  // key is pressed
+  help: true,
+  // Flags if speaker notes should be visible to all viewers
+  showNotes: false,
+  // Global override for autolaying embedded media (video/audio/iframe)
+  // - null: Media will only autoplay if data-autoplay is present
+  // - true: All media will autoplay, regardless of individual setting
+  // - false: No media will autoplay, regardless of individual setting
+  autoPlayMedia: null,
   // Number of milliseconds between automatically proceeding to the
   // next slide, disabled when set to 0, this value can be overwritten
   // by using a data-autoslide attribute on your slides
@@ -287,7 +305,11 @@ Reveal.initialize({
       { src: 'reveal.js-3.1.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
       { src: 'reveal.js-3.1.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
       { src: 'reveal.js-3.1.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-      { src: 'reveal.js-3.1.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-      { src: 'reveal.js-3.1.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-  ]
+      { src: 'reveal.js-3.1.0/plugin/zoom-js/zoom.js', async: true },
+      { src: 'reveal.js-3.1.0/plugin/notes/notes.js', async: true },
+      
+  ],
+
+  
+
 });</script></body></html>
