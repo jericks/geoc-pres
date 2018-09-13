@@ -1,0 +1,15 @@
+language: java
+jdk:
+- oraclejdk8
+script:
+- mvn clean package
+deploy:
+  provider: pages
+  edge:
+    branch: v1.8.47
+  skip-cleanup: true
+  github-token: $GITHUB_OAUTH_TOKEN
+  keep-history: true
+  local-dir: target/generated-docs
+  on:
+    branch: master
