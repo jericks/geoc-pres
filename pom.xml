@@ -83,7 +83,7 @@
                         <configuration>
                             <outputDirectory>${project.slides.directory}</outputDirectory>
                             <backend>revealjs</backend>
-                            <templateDir>${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates/slim</templateDir>
+                            <templateDir>${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates</templateDir>
                             <sourceHighlighter>highlightjs</sourceHighlighter>
                             <attributes>
                                 <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
