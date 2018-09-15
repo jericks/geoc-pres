@@ -139,7 +139,7 @@ geoc vector uniquevaluesstyle -i pc_reclass_poly.shp -f value \
 
 geoc map draw -f pc_reclass_poly.png \
     -l "layertype=layer file=pc_reclass_poly.shp style=pc_reclass_poly.sld"</code></pre></div></div></section><section id="vector_layer"><h2>Vector Layer</h2><div class="imageblock" style=""><img src="images/raster_vectorize.png" alt="SRTM" /></div></section></section>
-<section><section id="geopackage_tiles"><h2>GeoPackage Tiles</h2><div class="listingblock"><div class="title">Generate GeoPackage Geodetic Tiles</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
+<section><section id="tile_examples"><h2>Tile Examples</h2></section><section id="geopackage_tiles"><h2>GeoPackage Tiles</h2><div class="listingblock"><div class="title">Generate GeoPackage Geodetic Tiles</div><div class="content"><pre class="highlight"><code data-noescape="" class="bash language-bash">#!/bin/bash
 geoc tile generate \
   -l "type=geopackage file=tiles.gpkg name=world_geodetic pyramid=geodetic" \
   -m "layertype=layer file=naturalearth.gpkg layername=ocean style=ocean.sld" \
