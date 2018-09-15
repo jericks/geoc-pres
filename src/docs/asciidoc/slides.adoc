@@ -249,7 +249,9 @@ include::{sourcedir}/bash/raster_vectorize.sh[indent=0]
 
 image::raster_vectorize.png[SRTM]
 
-== GeoPackage Tiles
+== Tile Examples
+
+=== GeoPackage Tiles
 
 [source,bash]
 .Generate GeoPackage Geodetic Tiles
