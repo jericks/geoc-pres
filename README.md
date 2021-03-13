@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jericks/geoc-pres.svg?branch=master)](https://travis-ci.org/jericks/geoc-pres)
+[![Maven Build](https://github.com/jericks/geoc-pres/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jericks/geo-pres/actions/workflows/build.yml)
 
 GEOC Presentation for CUGOS
 ---------------------------
